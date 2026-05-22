@@ -145,8 +145,7 @@ function App() {
         `${process.env.REACT_APP_API}/admin/users`,
 
         {
-          hfnuj7yh6gtrfedrfvgtbhynjuik9jghyg
-
+          
           headers: {
             Authorization: "Bearer " + localStorage.getItem("token"),
           },
