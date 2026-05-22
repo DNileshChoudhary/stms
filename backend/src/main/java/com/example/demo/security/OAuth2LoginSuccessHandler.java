@@ -97,7 +97,7 @@ public class OAuth2LoginSuccessHandler
 
         response.sendRedirect(
 
-            "http://localhost:3000/oauth-success?token="
+            "https://stms-xi.vercel.app/oauth-success?token="
 
             + token
             + "&username="
