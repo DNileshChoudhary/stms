@@ -25,6 +25,8 @@ public class SecurityConfig {
                 configuration
                                 .addAllowedOrigin(
                                                 "http://localhost:3000");
+                configuration.addAllowedOrigin(
+                                "https://stms-xi.vercel.app/");
 
                 configuration.addAllowedMethod("*");
 
@@ -56,25 +58,9 @@ public class SecurityConfig {
                 }).csrf(csrf -> csrf.disable()).sessionManagement(
                                 session -> session.sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED))
                                 .authorizeHttpRequests(auth -> auth
-
-                                                .requestMatchers(
-                                                                "/auth/**",
-                                                                "/login/**",
-                                                                "/oauth2/**")
-                                                .permitAll()
-
-                                                .requestMatchers(
-                                                                "/admin/**")
-                                                .hasRole("ADMIN")
-
-                                                .requestMatchers(
-                                                                "/tasks/**",
-                                                                "/files/**",
-                                                                "/ai/**")
-                                                .authenticated()
-
-                                                .anyRequest()
-                                                .authenticated())
+                                                .requestMatchers("/auth/**", "/login/**", "/oauth2/**", "/tasks/**",
+                                                                "/ai/**", "/files/**", "/admin/analytics")
+                                                .permitAll().anyRequest().authenticated())
                                 .oauth2Login(oauth -> oauth.successHandler(successHandler));
                 return http.build();
         }
