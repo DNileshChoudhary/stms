@@ -1,12 +1,13 @@
 package com.example.demo.security;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.*;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.web.*;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.security.config.http.SessionCreationPolicy;
 
 import org.springframework.web.cors.CorsConfiguration;
-
 import org.springframework.web.cors.CorsConfigurationSource;
 
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
@@ -15,6 +16,8 @@ import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 public class SecurityConfig {
 
         private final OAuth2LoginSuccessHandler successHandler;
+        @Autowired
+        private JwtFilter jwtFilter;
 
         @Bean
 
@@ -57,11 +60,13 @@ public class SecurityConfig {
                 http.cors(cors -> {
                 }).csrf(csrf -> csrf.disable()).sessionManagement(
                                 session -> session.sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED))
-                                .authorizeHttpRequests(auth -> auth
-                                                .requestMatchers("/auth/**", "/login/**", "/oauth2/**", "/tasks/**",
-                                                                "/ai/**", "/files/**", "/admin/analytics")
-                                                .permitAll().anyRequest().authenticated())
-                                .oauth2Login(oauth -> oauth.successHandler(successHandler));
+                                .authorizeHttpRequests(auth -> auth.requestMatchers("/auth/**", "/login/**",
+                                                "/oauth2/**", "/tasks/**", "/ai/**", "/files/**", "/admin/analytics")
+                                                .permitAll().anyRequest()
+                                                .authenticated())
+                                .oauth2Login(oauth -> oauth.successHandler(successHandler))
+                                .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class);
+                ;
                 return http.build();
         }
 }
