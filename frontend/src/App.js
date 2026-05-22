@@ -142,10 +142,10 @@ function App() {
   const fetchUsers = async () => {
     try {
       const response = await axios.get(
-        "http://localhost:8080/admin/users",
+        `${process.env.REACT_APP_API}/admin/users`,
 
         {
-          withCredentials: true,
+          hfnuj7yh6gtrfedrfvgtbhynjuik9jghyg
 
           headers: {
             Authorization: "Bearer " + localStorage.getItem("token"),
@@ -165,7 +165,7 @@ function App() {
   const login = async () => {
     try {
       const response = await axios.post(
-        "http://localhost:8080/auth/login",
+        `${process.env.REACT_APP_API}/auth/login`,
 
         {
           username,
@@ -202,7 +202,7 @@ function App() {
   const fetchAnalytics = async () => {
     try {
       const response = await axios.get(
-        "http://localhost:8080/admin/analytics",
+        `${process.env.REACT_APP_API}/admin/analytics`,
 
         {
           headers: {
@@ -224,7 +224,7 @@ function App() {
     }
 
     try {
-      await axios.post("http://localhost:8080/auth/register", {
+      await axios.post(`${process.env.REACT_APP_API}/auth/register`, {
         username,
         email,
         password,
@@ -240,7 +240,7 @@ function App() {
   const fetchTasks = async () => {
     try {
       console.log(localStorage.getItem("token"));
-      const response = await axios.get("http://localhost:8080/tasks", {
+      const response = await axios.get(`${process.env.REACT_APP_API}/tasks`, {
         headers: {
           Authorization: "Bearer " + localStorage.getItem("token"),
         },
@@ -326,7 +326,7 @@ function App() {
         );
 
         const upload = await axios.post(
-          "http://localhost:8080/files/upload",
+          `${process.env.REACT_APP_API}/files/upload`,
 
           formData,
 
@@ -342,7 +342,7 @@ function App() {
         uploadedFile = upload.data;
       }
       await axios.post(
-        "http://localhost:8080/tasks",
+        `${process.env.REACT_APP_API}/tasks`,
         {
           title,
           status: "Pending",
@@ -377,7 +377,7 @@ function App() {
 
     try {
       await axios.delete(
-        `http://localhost:8080/admin/users/${id}`,
+        `${process.env.REACT_APP_API}/admin/users/${id}`,
 
         {
           withCredentials: true,
@@ -408,7 +408,7 @@ function App() {
       setLoadingAI(true);
 
       const response = await axios.get(
-        `http://localhost:8080/ai`,
+        `${process.env.REACT_APP_API}/ai`,
 
         {
           params: {
@@ -435,7 +435,7 @@ function App() {
       setLoadingSchedule(true);
 
       const response = await axios.post(
-        "http://localhost:8080/ai/schedule",
+        `${process.env.REACT_APP_API}/ai/schedule`,
 
         tasks,
       );
@@ -457,7 +457,7 @@ function App() {
     }
 
     try {
-      await axios.delete(`http://localhost:8080/tasks/${id}`, {
+      await axios.delete(`${process.env.REACT_APP_API}/tasks/${id}`, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
@@ -572,7 +572,7 @@ function App() {
       };
 
       await axios.put(
-        `http://localhost:8080/tasks/${id}`,
+        `${process.env.REACT_APP_API}/tasks/${id}`,
 
         updatedTask,
 
@@ -597,7 +597,7 @@ function App() {
 
     try {
       await axios.put(
-        `http://localhost:8080/tasks/status/${id}?status=${newStatus}`,
+        `${process.env.REACT_APP_API}/tasks/status/${id}?status=${newStatus}`,
 
         {},
 
@@ -631,7 +631,7 @@ function App() {
 
     try {
       await axios.put(
-        `http://localhost:8080/tasks/status/${taskId}?status=${newStatus}`,
+        `${process.env.REACT_APP_API}/tasks/status/${taskId}?status=${newStatus}`,
 
         {},
 
@@ -651,7 +651,7 @@ function App() {
   const sendOtp = async () => {
     try {
       await axios.post(
-        `http://localhost:8080/auth/forgot-password?input=${identifier}`,
+        `${process.env.REACT_APP_API}/auth/forgot-password?input=${identifier}`,
       );
 
       alert("OTP sent successfully");
@@ -663,7 +663,7 @@ function App() {
   const verifyOtp = async () => {
     try {
       await axios.post(
-        `http://localhost:8080/auth/verify-otp?email=${email}&otp=${otp}`,
+        `${process.env.REACT_APP_API}/auth/verify-otp?email=${email}&otp=${otp}`,
       );
 
       alert("OTP verified");
@@ -678,7 +678,7 @@ function App() {
     try {
       console.log("RESET USER:", identifier);
       await axios.post(
-        `http://localhost:8080/auth/reset-password` +
+        `${process.env.REACT_APP_API}/auth/reset-password` +
           `?input=${identifier}` +
           `&newPassword=${newPassword}`,
       );
@@ -704,7 +704,7 @@ function App() {
   };
 
   const googleLogin = () => {
-    window.location.href = "http://localhost:8080/oauth2/authorization/google";
+    window.location.href = `${process.env.REACT_APP_API}/oauth2/authorization/google`;
   };
 
   return (
@@ -1240,7 +1240,7 @@ function App() {
                                     <div className="taskFile">
                                       📎
                                       <a
-                                        href={`http://localhost:8080/files/${task.fileName}`}
+                                        href={`${process.env.REACT_APP_API}/files/${task.fileName}`}
                                         target="_blank"
                                         rel="noreferrer"
                                       >

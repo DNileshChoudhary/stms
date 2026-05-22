@@ -55,8 +55,17 @@ public class SecurityConfig {
                 http.cors(cors -> {
                 }).csrf(csrf -> csrf.disable()).sessionManagement(
                                 session -> session.sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED))
-                                .authorizeHttpRequests(auth -> auth.requestMatchers("/auth/**", "/login/**",
-                                                "/oauth2/**", "/tasks/**", "/ai/**","/files/**","/admin/analytics").permitAll().anyRequest()
+                                .authorizeHttpRequests(auth -> auth
+                                                .requestMatchers(
+                                                                "/auth/**",
+                                                                "/login/**",
+                                                                "/oauth2/**")
+                                                .permitAll()
+
+                                                .requestMatchers("/admin/**")
+                                                .hasRole("ADMIN")
+
+                                                .anyRequest()
                                                 .authenticated())
                                 .oauth2Login(oauth -> oauth.successHandler(successHandler));
                 return http.build();
