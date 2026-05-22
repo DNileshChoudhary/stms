@@ -56,14 +56,22 @@ public class SecurityConfig {
                 }).csrf(csrf -> csrf.disable()).sessionManagement(
                                 session -> session.sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED))
                                 .authorizeHttpRequests(auth -> auth
+
                                                 .requestMatchers(
                                                                 "/auth/**",
                                                                 "/login/**",
                                                                 "/oauth2/**")
                                                 .permitAll()
 
-                                                .requestMatchers("/admin/**")
+                                                .requestMatchers(
+                                                                "/admin/**")
                                                 .hasRole("ADMIN")
+
+                                                .requestMatchers(
+                                                                "/tasks/**",
+                                                                "/files/**",
+                                                                "/ai/**")
+                                                .authenticated()
 
                                                 .anyRequest()
                                                 .authenticated())
