@@ -146,6 +146,7 @@ function App() {
 
         {
           
+          withCredentials : true ,
           headers: {
             Authorization: "Bearer " + localStorage.getItem("token"),
           },
