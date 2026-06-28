@@ -26,7 +26,7 @@ import org.springframework.http.MediaType;
 
 @RequestMapping("/files")
 
-@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin(origins = "https://stms-xi.vercel.app/")
 
 public class FileController {
 
