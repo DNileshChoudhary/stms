@@ -181,7 +181,6 @@ GROQ_API_KEY=
 **D. Nilesh Choudhary**
 
 * GitHub: https://github.com/DNileshChoudhary
-* Portfolio: https://dnileshchoudary.github.io/ShadowFox/
 
 ---
 
