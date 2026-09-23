@@ -55,7 +55,7 @@ A modern **AI-powered Full Stack Task Management Portal** built using **React.js
 
 ### AI Integration
 
-* Google Gemini API
+* Groq API
 
 ### Other Technologies
 
@@ -78,7 +78,7 @@ React Frontend
 REST APIs
    │
 Spring Boot Backend
-   ├──────────────► Google Gemini API
+   ├──────────────► Groq API
    │
    ├──────────────► MySQL Database
    │
