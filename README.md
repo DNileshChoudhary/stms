@@ -18,7 +18,7 @@ A modern **AI-powered Full Stack Task Management Portal** built using **React.js
 * ✅ Create, Update & Delete Tasks
 * 📂 Task Categorization
 * 📅 Due Date Management
-* 🤖 AI Task Analysis (Google Gemini API)
+* 🤖 AI Task Analysis (Groq API)
 * 🧠 AI Smart Schedule Generation
 * 📎 File Upload & Attachments
 * 🔔 Due Date & Overdue Notifications
